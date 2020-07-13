@@ -1,0 +1,21 @@
+pipeline
+{
+    
+    agent any
+    stages
+    {
+        stage('Test')
+        {
+            steps
+            {
+                script
+                {
+                writeFile([file:"$WORKSPACE/dockerfile",text:libraryResource("Dockerfile/Dockerfile.apache")])	
+                sh ''' 
+                    docker build -t apache:01 .
+                    '''
+                }
+            }
+        }
+    }
+}

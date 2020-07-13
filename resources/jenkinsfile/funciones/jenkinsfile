@@ -1,0 +1,30 @@
+pipeline 
+{
+    environment 
+    {
+        registry = "eltano84/docker-test"
+        registryCredential = 'dockerhub'
+        dockerImage = ''
+    }
+    agent any
+
+    stages 
+    {
+        stage('Building and send image') 
+        {
+            steps
+            {
+                sh "cp $WORKSPACE/resources/jenkinsfile/funciones/Dockerfile $WORKSPACE"
+                build_docker()
+            }
+        }
+        
+        stage('Remove Unused docker image') 
+        {
+            steps
+            {
+                remove_old_image()
+            }
+        }
+    }
+}

@@ -1,0 +1,7 @@
+FROM {{ registro_docker }}/ubuntu:18.04
+MAINTAINER eltano <gabriel.cetraro@redb.ee>
+
+#Herramienta para traer y guardar swagger files
+
+RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y wget curl python-pip nfs-common cifs-utils iputils-ping
+RUN pip install json-spec
